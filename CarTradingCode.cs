@@ -71,7 +71,7 @@ namespace CarTradingApp
 
         private void LoadCars()
         {
-            using (SqlConnection conn = new SqlConnection("Server=your_server;Database=CarTradingDB;Trusted_Connection=True;"))
+            using (SqlConnection conn = new SqlConnection("Server=NHLANHLANHLEKO\SQLEXPRESS;Database=CarTradingDB;Trusted_Connection=True;"))
             {
                 string query = role == "Manager" ? "SELECT * FROM Cars" : "SELECT * FROM Cars WHERE AddedBy IN (SELECT UserID FROM Users WHERE Department = @Department)";
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -92,7 +92,7 @@ namespace CarTradingApp
         {
             if (lstCars.SelectedItem != null)
             {
-                using (SqlConnection conn = new SqlConnection("Server=your_server;Database=CarTradingDB;Trusted_Connection=True;"))
+                using (SqlConnection conn = new SqlConnection("Server=NHLANHLANHLEKO\SQLEXPRESS;Database=CarTradingDB;Trusted_Connection=True;"))
                 {
                     string selectedCar = lstCars.SelectedItem.ToString();
                     string[] carDetails = selectedCar.Split(' ');
@@ -129,7 +129,7 @@ namespace CarTradingApp
         private void btnViewSalesReport_Click(object sender, EventArgs e)
         {
             lstTransactions.Items.Clear();
-            using (SqlConnection conn = new SqlConnection("Server=your_server;Database=CarTradingDB;Trusted_Connection=True;"))
+            using (SqlConnection conn = new SqlConnection("Server=NHLANHLANHLEKO\SQLEXPRESS;Database=CarTradingDB;Trusted_Connection=True;"))
             {
                 string query = "SELECT Cars.Make, Cars.Model, Cars.Year, Transactions.BuyerName, Transactions.SalePrice, Users.Username FROM Transactions INNER JOIN Cars ON Transactions.CarID = Cars.CarID INNER JOIN Users ON Transactions.ProcessedBy = Users.UserID";
                 SqlCommand cmd = new SqlCommand(query, conn);
